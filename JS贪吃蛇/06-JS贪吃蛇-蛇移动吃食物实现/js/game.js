@@ -65,7 +65,7 @@
     //移动蛇对象
     function runSnake() {
         var timerId = setInterval(function () {
-            that.snake.move();//移动
+            that.snake.move(that.food,that.map);//移动
             that.snake.render(that.map);//渲染
             //x方向可以移动的最大数
             var maxX = that.map.offsetWidth / that.snake.width;

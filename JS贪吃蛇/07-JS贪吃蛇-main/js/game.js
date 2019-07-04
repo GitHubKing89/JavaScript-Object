@@ -65,14 +65,14 @@
     //移动蛇对象
     function runSnake() {
         var timerId = setInterval(function () {
-            that.snake.move();//移动
+            this.snake.move(that.food,that.map);//移动
             that.snake.render(that.map);//渲染
             //x方向可以移动的最大数
-            var maxX = that.map.offsetWidth / that.snake.width;
+            var maxX = this.map.offsetWidth / that.snake.width;
             //y方向可以移动的最大数
-            var maxY = that.map.offsetHeight / that.snake.height;
-            var headX = that.snake.body[0].x;
-            var headY = that.snake.body[0].y;
+            var maxY = this.map.offsetHeight / that.snake.height;
+            var headX = this.snake.body[0].x;
+            var headY = this.snake.body[0].y;
 
             //判断超出边界就结束游戏
             if (headX < 0 || headX >= maxX) {
@@ -83,12 +83,14 @@
                 alert('Game Over');
                 clearInterval(timerId);
             }
-        }, 150);
+        }.bind(that), 150);
     }
 
     window.Game = Game;
 })();
 
-var map = document.getElementById('map');
-var game = new Game(map);
-game.start();
+
+//测试代码
+// var map = document.getElementById('map');
+// var game = new Game(map);
+// game.start();
